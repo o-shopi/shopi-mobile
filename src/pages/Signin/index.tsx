@@ -3,7 +3,7 @@ import { Image } from 'react-native';
 
 import logoImg from '../../assets/logo.png';
 
-import { Container, LogoText, LogoWrapper } from './styles';
+import { Container, LogoText, LogoWrapper, TextInput } from './styles';
 
 const SignIn: React.FC = () => (
   <Container>
@@ -11,6 +11,8 @@ const SignIn: React.FC = () => (
       <Image source={logoImg} />
       <LogoText>SHOPI</LogoText>
     </LogoWrapper>
+    <TextInput label="E-mail" />
+    <TextInput label="Senha" />
   </Container>
 );
 

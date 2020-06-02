@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { TextInput as MaterialTextInput } from 'react-native-paper';
 
 export const Container = styled.View`
   flex: 1;
@@ -21,4 +22,9 @@ export const LogoText = styled.Text`
 
   font-family: 'Roboto-Thin';
   margin: 8px 0 0 15px;
+`;
+
+export const TextInput = styled(MaterialTextInput)`
+  width: 100%;
+  background-color: #fff;
 `;
