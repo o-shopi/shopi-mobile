@@ -3,7 +3,18 @@ import { Image } from 'react-native';
 
 import logoImg from '../../assets/logo.png';
 
-import { Container, LogoText, LogoWrapper } from './styles';
+import Button from '../../components/Button';
+
+import {
+  Container,
+  LogoText,
+  LogoWrapper,
+  TextInput,
+  WelcomeText,
+  SubText,
+  ForgotPassword,
+  ForgotPasswordText,
+} from './styles';
 
 const SignIn: React.FC = () => (
   <Container>
@@ -11,6 +22,30 @@ const SignIn: React.FC = () => (
       <Image source={logoImg} />
       <LogoText>SHOPI</LogoText>
     </LogoWrapper>
+
+    <WelcomeText>Welcome Back,</WelcomeText>
+
+    <SubText>Realize o login para continuar</SubText>
+
+    <TextInput name="email" label="E-mail" />
+
+    <TextInput name="password" label="Senha" />
+
+    <ForgotPassword
+      onPress={() => {
+        console.log('esqueci a senha');
+      }}
+    >
+      <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
+    </ForgotPassword>
+
+    <Button
+      onPress={() => {
+        console.log('login');
+      }}
+    >
+      Login
+    </Button>
   </Container>
 );
 
