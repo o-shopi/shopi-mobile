@@ -12,7 +12,7 @@ export const Container = styled.View`
   align-items: center;
   justify-content: center;
 
-  padding: 0 32px;
+  padding: 64px 32px 0;
 `;
 
 export const LogoWrapper = styled.View`
@@ -35,6 +35,13 @@ export const LogoText = styled.Text`
 export const TextInput = styled(MaterialTextInput)<InputProps>`
   width: 100%;
   background-color: #fff;
+  margin-bottom: 28px;
+`;
+
+export const SmallTextInput = styled(MaterialTextInput)<InputProps>`
+  width: 45%;
+  background-color: #fff;
+  margin-bottom: 28px;
 `;
 
 export const WelcomeText = styled.Text`
@@ -48,19 +55,8 @@ export const SubText = styled.Text`
   font-family: 'Ubuntu-Regular';
   font-size: 16px;
   color: #747474;
-  margin-bottom: 62px;
+  margin-bottom: 30px;
   align-self: flex-start;
-`;
-
-export const ForgotPassword = styled.TouchableOpacity`
-  margin: 24px 0 37px;
-  align-self: flex-end;
-`;
-
-export const ForgotPasswordText = styled.Text`
-  color: #626262;
-  font-size: 16px;
-  font-family: 'Roboto-Regular';
 `;
 
 export const DividerWrapper = styled.View`
@@ -116,4 +112,16 @@ export const RegisterButtonText = styled.Text`
   font-family: 'Roboto-Regular';
   font-size: 18px;
   color: #3daf7f;
+`;
+
+export const InputDivider = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const LoginButtonsWrapper = styled.View`
+  width: 100%;
+  max-height: 215px;
+  padding: 0 32px 27px;
 `;
