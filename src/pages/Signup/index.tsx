@@ -1,5 +1,12 @@
 import React from 'react';
-import { Image } from 'react-native';
+import {
+  Image,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
+  View,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import logoImg from '../../assets/logo.png';
 
@@ -13,8 +20,6 @@ import {
   TextInput,
   WelcomeText,
   SubText,
-  ForgotPassword,
-  ForgotPasswordText,
   DividerWrapper,
   LineGray,
   DividerText,
@@ -23,57 +28,84 @@ import {
   RegisterLabel,
   RegisterButton,
   RegisterButtonText,
+  InputDivider,
+  SmallTextInput,
+  LoginButtonsWrapper,
 } from './styles';
 
-const SignUp: React.FC = () => (
-  <Container>
-    <LogoWrapper>
-      <Image source={logoImg} />
-      <LogoText>SHOPI</LogoText>
-    </LogoWrapper>
+const SignUp: React.FC = () => {
+  const navigation = useNavigation();
 
-    <WelcomeText>Welcome Back,</WelcomeText>
+  return (
+    <>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{ flex: 1 }}
+      >
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          enabled
+        >
+          <Container>
+            <LogoWrapper>
+              <Image source={logoImg} />
+              <LogoText>SHOPI</LogoText>
+            </LogoWrapper>
 
-    <SubText>Realize o login para continuar</SubText>
+            <View style={{ width: '100%' }}>
+              <WelcomeText>Cadastro</WelcomeText>
 
-    <TextInput name="email" label="E-mail" />
+              <SubText>Complete o cadastro para continuar</SubText>
+            </View>
 
-    <TextInput name="password" label="Senha" />
+            <InputDivider>
+              <SmallTextInput name="firstName" label="Nome" />
+              <SmallTextInput name="lastName" label="Sobrenome" />
+            </InputDivider>
 
-    <ForgotPassword
-      onPress={() => {
-        console.log('esqueci a senha');
-      }}
-    >
-      <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
-    </ForgotPassword>
+            <TextInput name="email" label="E-mail" />
 
-    <Button
-      onPress={() => {
-        console.log('login');
-      }}
-    >
-      Login
-    </Button>
+            <TextInput name="password" label="Senha" />
 
-    <DividerWrapper>
-      <LineGray />
-      <DividerText>OU</DividerText>
-      <LineGray />
-    </DividerWrapper>
+            <TextInput name="confirmPassword" label="Confirmar senha" />
 
-    <ChipDivider>
-      <Badge color="blue">Facebook</Badge>
-      <Badge color="red">Google</Badge>
-    </ChipDivider>
+            <Button
+              onPress={() => {
+                console.log('Avançar');
+              }}
+            >
+              Avançar
+            </Button>
+          </Container>
+        </KeyboardAvoidingView>
+        <LoginButtonsWrapper>
+          <DividerWrapper>
+            <LineGray />
+            <DividerText>OU</DividerText>
+            <LineGray />
+          </DividerWrapper>
 
-    <RegisterWrapper>
-      <RegisterLabel>É novo por aqui?</RegisterLabel>
-      <RegisterButton>
-        <RegisterButtonText>Cadastre-se</RegisterButtonText>
-      </RegisterButton>
-    </RegisterWrapper>
-  </Container>
-);
+          <ChipDivider>
+            <Badge color="blue">Facebook</Badge>
+            <Badge color="red">Google</Badge>
+          </ChipDivider>
+
+          <RegisterWrapper>
+            <RegisterLabel>Já é cadastrado?</RegisterLabel>
+
+            <RegisterButton
+              onPress={() => {
+                navigation.navigate('SignIn');
+              }}
+            >
+              <RegisterButtonText>Login</RegisterButtonText>
+            </RegisterButton>
+          </RegisterWrapper>
+        </LoginButtonsWrapper>
+      </ScrollView>
+    </>
+  );
+};
 
 export default SignUp;
