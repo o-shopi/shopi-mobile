@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import logoImg from '../../assets/logo.png';
@@ -54,7 +54,7 @@ const SignIn: React.FC = () => {
 
       <Button
         onPress={() => {
-          console.log('login');
+          navigation.navigate('Search');
         }}
       >
         Login

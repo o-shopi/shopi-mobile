@@ -5,6 +5,7 @@ import {
   ScrollView,
   Platform,
   View,
+  SafeAreaView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -41,6 +42,7 @@ const SignUp: React.FC = () => {
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ flex: 1 }}
+        contentInsetAdjustmentBehavior="automatic"
       >
         <KeyboardAvoidingView
           style={{ flex: 1 }}
