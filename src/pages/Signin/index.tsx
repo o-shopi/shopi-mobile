@@ -19,6 +19,10 @@ import {
   LineGray,
   DividerText,
   ChipDivider,
+  RegisterWrapper,
+  RegisterLabel,
+  RegisterButton,
+  RegisterButtonText,
 } from './styles';
 
 const SignIn: React.FC = () => (
@@ -62,6 +66,13 @@ const SignIn: React.FC = () => (
       <Badge color="blue">Facebook</Badge>
       <Badge color="red">Google</Badge>
     </ChipDivider>
+
+    <RegisterWrapper>
+      <RegisterLabel>É novo por aqui?</RegisterLabel>
+      <RegisterButton>
+        <RegisterButtonText>Cadastre-se</RegisterButtonText>
+      </RegisterButton>
+    </RegisterWrapper>
   </Container>
 );
 

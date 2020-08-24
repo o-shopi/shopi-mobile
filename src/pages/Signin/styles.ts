@@ -97,3 +97,23 @@ export const ChipDivider = styled.View`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const RegisterWrapper = styled.View`
+  align-items: center;
+`;
+
+export const RegisterLabel = styled.Text`
+  margin-bottom: 8px;
+
+  font-size: 18px;
+  color: #626262;
+  font-family: 'Roboto-Regular';
+`;
+
+export const RegisterButton = styled.TouchableOpacity``;
+
+export const RegisterButtonText = styled.Text`
+  font-family: 'Roboto-Regular';
+  font-size: 18px;
+  color: #3daf7f;
+`;
