@@ -4,6 +4,7 @@ import { Image } from 'react-native';
 import logoImg from '../../assets/logo.png';
 
 import Button from '../../components/Button';
+import Badge from '../../components/Badge';
 
 import {
   Container,
@@ -14,6 +15,10 @@ import {
   SubText,
   ForgotPassword,
   ForgotPasswordText,
+  DividerWrapper,
+  LineGray,
+  DividerText,
+  ChipDivider,
 } from './styles';
 
 const SignIn: React.FC = () => (
@@ -46,6 +51,17 @@ const SignIn: React.FC = () => (
     >
       Login
     </Button>
+
+    <DividerWrapper>
+      <LineGray />
+      <DividerText>OU</DividerText>
+      <LineGray />
+    </DividerWrapper>
+
+    <ChipDivider>
+      <Badge color="blue">Facebook</Badge>
+      <Badge color="red">Google</Badge>
+    </ChipDivider>
   </Container>
 );
 

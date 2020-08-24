@@ -62,3 +62,38 @@ export const ForgotPasswordText = styled.Text`
   font-size: 16px;
   font-family: 'Roboto-Regular';
 `;
+
+export const DividerWrapper = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 24px;
+`;
+
+export const LineGray = styled.View`
+  border-width: 0.5px;
+  border-color: #c2c2c2;
+  flex: 1;
+`;
+
+export const DividerText = styled.Text`
+  color: #626262;
+  font-size: 18px;
+  font-family: 'Ubuntu-Bold';
+  margin: 0 12px;
+`;
+
+export const ChipText = styled.Text`
+  font-size: 16px;
+  color: #fff;
+  font-family: 'Ubuntu-Bold';
+`;
+
+export const ChipDivider = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
