@@ -1,14 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import {
   View,
-  Text,
   Image,
   SafeAreaView,
   ScrollView,
   Dimensions,
   StyleSheet,
   Platform,
-  TouchableOpacity,
+  Text,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Carousel, {
@@ -16,11 +15,27 @@ import Carousel, {
   ParallaxImageProps,
   Pagination,
 } from 'react-native-snap-carousel';
+import { RadioButton, List } from 'react-native-paper';
 
 import backArrowImg from '../../assets/back-arrow.png';
 import qrCodeImg from '../../assets/codigo-qr-green.png';
+import shareImg from '../../assets/compartilhar.png';
 
-import { PageControls, BackButton, QrCodeButton } from './styles';
+import {
+  PageControls,
+  BackButton,
+  QrCodeButton,
+  ProductInfoCard,
+  ProductTitleWrapper,
+  ProductTitle,
+  ShoppingInfoText,
+  SelectionBlock,
+  SelectionBlockTitle,
+  SelectBullet,
+  ProductDetailsText,
+  ReserveButton,
+  ReserveButtonText,
+} from './styles';
 
 interface ParallaxProperties extends ParallaxImageProps {
   illustration: string;
@@ -37,6 +52,7 @@ interface Product {
 const ProductDetails: React.FC = () => {
   const navigation = useNavigation();
   const carouselRef = useRef(null);
+  const { width: screenWidth } = Dimensions.get('window');
 
   const pictures: Product[] = [
     {
@@ -60,13 +76,7 @@ const ProductDetails: React.FC = () => {
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
-
-  const carouselState = {
-    activeIndex: 0,
-    pictures,
-  };
-
-  const { width: screenWidth } = Dimensions.get('window');
+  const [currentSize, setSize] = useState('M');
 
   const styles = StyleSheet.create({
     container: {
@@ -74,11 +84,11 @@ const ProductDetails: React.FC = () => {
     },
     item: {
       width: screenWidth,
-      height: screenWidth - 15,
+      height: screenWidth + 30,
     },
     imageContainer: {
       flex: 1,
-      marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
+      marginBottom: Platform.select({ ios: 0, android: 1 }),
       backgroundColor: 'white',
       borderRadius: 0,
     },
@@ -133,7 +143,7 @@ const ProductDetails: React.FC = () => {
               height: 10,
               borderRadius: 8,
               marginHorizontal: 8,
-              backgroundColor: 'rgba(225, 225, 225, 0.92)',
+              backgroundColor: 'rgba(255, 255, 255, 0.92)',
             }}
             inactiveDotStyle={
               {
@@ -146,7 +156,11 @@ const ProductDetails: React.FC = () => {
         </View>
 
         <PageControls>
-          <BackButton>
+          <BackButton
+            onPress={() => {
+              navigation.navigate('Search');
+            }}
+          >
             <Image source={backArrowImg} style={{ height: 17, width: 17 }} />
           </BackButton>
 
@@ -154,6 +168,158 @@ const ProductDetails: React.FC = () => {
             <Image source={qrCodeImg} style={{ height: 30, width: 30 }} />
           </QrCodeButton>
         </PageControls>
+
+        <ProductInfoCard>
+          <ProductTitleWrapper>
+            <View style={{}}>
+              <ProductTitle>Camisa Vermelha Feminina</ProductTitle>
+              <ProductTitle>R$200,00</ProductTitle>
+            </View>
+            <Image source={shareImg} style={{ width: 23, height: 23 }} />
+          </ProductTitleWrapper>
+          <ShoppingInfoText>SHOPPING VILLA LOBOS | 2º ANDAR </ShoppingInfoText>
+          <SelectionBlock>
+            <SelectionBlockTitle>COR:</SelectionBlockTitle>
+            <SelectBullet />
+          </SelectionBlock>
+          <SelectionBlock>
+            <SelectionBlockTitle>TAMANHO:</SelectionBlockTitle>
+            <RadioButton.Group
+              onValueChange={(value) => setSize(value)}
+              value={currentSize}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: '100%',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}
+              >
+                <RadioButton.Item
+                  labelStyle={{
+                    fontSize: 14,
+                    color: '#61a899',
+                    paddingLeft: 2,
+                  }}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#61a899',
+                    borderRadius: 50,
+                  }}
+                  label="P"
+                  value="P"
+                />
+                <RadioButton.Item
+                  labelStyle={{
+                    fontSize: 14,
+                    color: '#61a899',
+                    paddingLeft: 2,
+                  }}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#61a899',
+                    borderRadius: 50,
+                  }}
+                  label="M"
+                  value="M"
+                />
+                <RadioButton.Item
+                  labelStyle={{
+                    fontSize: 14,
+                    color: '#61a899',
+                    paddingLeft: 2,
+                  }}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#61a899',
+                    borderRadius: 50,
+                  }}
+                  label="G"
+                  value="G"
+                />
+              </View>
+            </RadioButton.Group>
+          </SelectionBlock>
+          <List.AccordionGroup>
+            <List.Accordion
+              theme={{
+                colors: {
+                  text: '#7E7E7E',
+                },
+              }}
+              style={{
+                paddingLeft: 0,
+                marginTop: 11,
+                borderTopWidth: 1,
+                borderTopColor: '#7E7E7E',
+              }}
+              titleStyle={{
+                fontSize: 18,
+              }}
+              title="DESCRIÇÃO E DETALHES"
+              id="1"
+            >
+              <ProductDetailsText>
+                Blusa feminina Manga Longa Gola Laço Estampa Corações Marca: A
+                Collection Material: Poliéster Composição: 100% Poliéster
+                Composição Forro: 100% Poliéster
+              </ProductDetailsText>
+            </List.Accordion>
+            <List.Accordion
+              theme={{
+                colors: {
+                  text: '#7E7E7E',
+                },
+              }}
+              style={{
+                paddingLeft: 0,
+                borderTopWidth: 1,
+                borderTopColor: '#7E7E7E',
+              }}
+              titleStyle={{
+                fontSize: 18,
+              }}
+              title="COMPOSIÇÃO"
+              id="2"
+            >
+              <ProductDetailsText>
+                Blusa feminina Manga Longa Gola Laço Estampa Corações Marca: A
+                Collection Material: Poliéster Composição: 100% Poliéster
+                Composição Forro: 100% Poliéster
+              </ProductDetailsText>
+            </List.Accordion>
+
+            <List.Accordion
+              theme={{
+                colors: {
+                  text: '#7E7E7E',
+                },
+              }}
+              style={{
+                paddingLeft: 0,
+                borderTopWidth: 1,
+                borderTopColor: '#7E7E7E',
+              }}
+              titleStyle={{
+                fontSize: 18,
+              }}
+              title="GARANTIA"
+              id="3"
+            >
+              <ProductDetailsText>2 meses.</ProductDetailsText>
+            </List.Accordion>
+          </List.AccordionGroup>
+        </ProductInfoCard>
+        <ReserveButton>
+          <ReserveButtonText>Reservar</ReserveButtonText>
+        </ReserveButton>
       </ScrollView>
     </SafeAreaView>
   );
