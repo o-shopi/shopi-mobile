@@ -1,40 +1,46 @@
 import React from 'react';
 
-import { Image } from 'react-native';
-import { Container, ImageContainer, SearchBar, SearchbarText } from './styles';
+import { Image, ViewProps, Animated, View } from 'react-native';
+import {
+  Container,
+  ImageContainer,
+  SearchBar,
+  SearchBarTextInput,
+} from './styles';
 
 import iconMenuImg from '../../assets/icone-menu.png';
 import logoImg from '../../assets/logo-white.png';
 import qrcodeImg from '../../assets/codigo-qr.png';
+import loupeImg from '../../assets/loupe.png';
 
-const Header: React.FC = () => {
+const Header: React.FC = ({ ...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       <ImageContainer>
         <Image
           source={iconMenuImg}
-          style={{ width: 30, height: 30 }}
+          style={{ width: 28, height: 28 }}
           resizeMode="contain"
         />
 
         <Image
           source={logoImg}
-          style={{ width: 30, height: 30 }}
+          style={{ width: 35, height: 35 }}
           resizeMode="contain"
         />
 
         <Image
           source={qrcodeImg}
-          style={{ width: 30, height: 30 }}
+          style={{ width: 28, height: 28 }}
           resizeMode="contain"
         />
       </ImageContainer>
 
       <SearchBar>
-        <SearchbarText>Camisas</SearchbarText>
+        <SearchBarTextInput placeholder="Busque o produto desejado" />
         <Image
-          source={qrcodeImg}
-          style={{ width: 30, height: 30 }}
+          source={loupeImg}
+          style={{ width: 13, height: 13 }}
           resizeMode="contain"
         />
       </SearchBar>
