@@ -40,9 +40,14 @@ const SignIn: React.FC = () => {
 
       <SubText>Realize o login para continuar</SubText>
 
-      <TextInput name="email" label="E-mail" />
+      <TextInput
+        name="email"
+        label="E-mail"
+        keyboardType="email-address"
+        returnKeyType="next"
+      />
 
-      <TextInput name="password" label="Senha" />
+      <TextInput name="password" label="Senha" secureTextEntry />
 
       <ForgotPassword
         onPress={() => {
@@ -54,7 +59,7 @@ const SignIn: React.FC = () => {
 
       <Button
         onPress={() => {
-          navigation.navigate('Search');
+          navigation.navigate('Home');
         }}
       >
         Login

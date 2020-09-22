@@ -16,6 +16,7 @@ import Carousel, {
   Pagination,
 } from 'react-native-snap-carousel';
 import { RadioButton, List } from 'react-native-paper';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 import backArrowImg from '../../assets/back-arrow.png';
 import qrCodeImg from '../../assets/codigo-qr-green.png';
@@ -77,6 +78,7 @@ const ProductDetails: React.FC = () => {
 
   const [activeSlide, setActiveSlide] = useState(0);
   const [currentSize, setSize] = useState('M');
+  const [showAlert, setShowAlert] = useState(false);
 
   const styles = StyleSheet.create({
     container: {
@@ -317,9 +319,51 @@ const ProductDetails: React.FC = () => {
             </List.Accordion>
           </List.AccordionGroup>
         </ProductInfoCard>
-        <ReserveButton>
+        <ReserveButton
+          onPress={() => {
+            setShowAlert(true);
+          }}
+        >
           <ReserveButtonText>Reservar</ReserveButtonText>
         </ReserveButton>
+        <AwesomeAlert
+          show={showAlert}
+          showProgress={false}
+          title="Tem certeza?"
+          message="Essa ação não poderá ser desfeita! Você tem certeza que deseja reservar esse produto?"
+          closeOnTouchOutside
+          closeOnHardwareBackPress={false}
+          showCancelButton
+          showConfirmButton
+          cancelText="Não, cancelar"
+          confirmText="Sim, tenho"
+          confirmButtonColor="#61a899"
+          cancelButtonColor="#DD6B55"
+          onCancelPressed={() => {
+            setShowAlert(false);
+          }}
+          onConfirmPressed={() => {
+            setShowAlert(false);
+            navigation.navigate('Reserve');
+          }}
+          contentContainerStyle={{
+            height: 220,
+            width: 400,
+            justifyContent: 'space-between',
+            paddingBottom: 20,
+          }}
+          titleStyle={{
+            fontSize: 22,
+            color: '#61a899',
+            fontFamily: 'Ubuntu-Bold',
+          }}
+          messageStyle={{
+            textAlign: 'center',
+            marginTop: 10,
+            fontSize: 16,
+            fontFamily: 'Ubuntu-Regular',
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );
