@@ -185,7 +185,11 @@ const Search: React.FC = () => {
                   >
                     <PriceText>R$199,00</PriceText>
                   </Chip>
-                  <ReserveButton>
+                  <ReserveButton
+                    onPress={() => {
+                      navigation.navigate('ProductDetails');
+                    }}
+                  >
                     <ReserveButtonText>Reservar</ReserveButtonText>
                   </ReserveButton>
                 </ProductActions>

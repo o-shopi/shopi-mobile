@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Image, ViewProps, Animated, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   ImageContainer,
@@ -14,6 +15,8 @@ import qrcodeImg from '../../assets/codigo-qr.png';
 import loupeImg from '../../assets/loupe.png';
 
 const Header: React.FC = ({ ...rest }) => {
+  const navigation = useNavigation();
+
   return (
     <Container {...rest}>
       <ImageContainer>
@@ -37,7 +40,12 @@ const Header: React.FC = ({ ...rest }) => {
       </ImageContainer>
 
       <SearchBar>
-        <SearchBarTextInput placeholder="Busque o produto desejado" />
+        <SearchBarTextInput
+          placeholder="Busque o produto desejado"
+          onSubmitEditing={() => {
+            navigation.navigate('Search');
+          }}
+        />
         <Image
           source={loupeImg}
           style={{ width: 13, height: 13 }}
